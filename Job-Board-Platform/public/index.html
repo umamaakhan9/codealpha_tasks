@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbit Careers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+
+      <header class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">CodeAlpha Task 4</p>
+          <h1>Orbit Careers</h1>
+          <p>A futuristic hiring platform to post jobs, search roles, apply with confidence, and track candidate pipelines.</p>
+          <div class="actions">
+            <button class="primary" id="fillEmployerDemo">Employer Demo</button>
+            <button class="secondary" id="fillCandidateDemo">Candidate Demo</button>
+          </div>
+        </div>
+        <div class="hero-stats" id="heroStats"></div>
+      </header>
+
+      <main class="grid">
+        <section class="panel">
+          <div class="head">
+            <p class="eyebrow">Access</p>
+            <h2 id="accountTitle">Login to unlock job board actions</h2>
+          </div>
+
+          <div id="authBlock">
+            <div class="tabs">
+              <button class="tab active" data-tab="login">Login</button>
+              <button class="tab" data-tab="register">Register</button>
+            </div>
+
+            <form id="loginForm" class="form-grid">
+              <input type="email" name="email" placeholder="employer@jobs.com" required />
+              <input type="password" name="password" placeholder="admin123" required />
+              <button type="submit" class="primary span-2">Login</button>
+            </form>
+
+            <form id="registerForm" class="form-grid hidden">
+              <input type="text" name="name" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Email address" required />
+              <input type="password" name="password" placeholder="Password" required />
+              <select name="role">
+                <option value="candidate">Candidate</option>
+                <option value="employer">Employer</option>
+                <option value="admin">Admin</option>
+              </select>
+              <input class="span-2" type="text" name="company_name" placeholder="Company name (for employers)" />
+              <input class="span-2" type="url" name="resume_url" placeholder="Resume URL (for candidates)" />
+              <button type="submit" class="primary span-2">Create Account</button>
+            </form>
+          </div>
+
+          <div id="accountCard" class="account-card hidden"></div>
+        </section>
+
+        <section class="panel">
+          <div class="head">
+            <p class="eyebrow">Platform Metrics</p>
+            <h2>Hiring overview</h2>
+          </div>
+          <div class="metrics" id="metricsGrid"></div>
+        </section>
+      </main>
+
+      <section class="panel">
+        <div class="head">
+          <p class="eyebrow">Search Roles</p>
+          <h2>Explore opportunities</h2>
+        </div>
+        <form id="searchForm" class="form-grid">
+          <input type="text" name="q" placeholder="Search by job title" />
+          <input type="text" name="location" placeholder="Location" />
+          <input type="text" name="jobType" placeholder="Job type" />
+          <button type="submit" class="primary">Search</button>
+        </form>
+        <div class="jobs-grid" id="jobsGrid"></div>
+      </section>
+
+      <section class="grid">
+        <section class="panel hidden" id="employerPanel">
+          <div class="head">
+            <p class="eyebrow">Employer Console</p>
+            <h2>Post jobs and review pipeline</h2>
+          </div>
+          <form id="jobForm" class="form-grid">
+            <input type="text" name="title" placeholder="Job title" required />
+            <input type="text" name="location" placeholder="Location" />
+            <input type="text" name="job_type" placeholder="Job type" />
+            <input type="text" name="salary_range" placeholder="Salary range" />
+            <textarea class="span-2" name="description" rows="3" placeholder="Job description"></textarea>
+            <input class="span-2" type="text" name="skills" placeholder="Skills e.g. Node.js, SQL, REST" />
+            <button type="submit" class="primary span-2">Post Job</button>
+          </form>
+          <div class="list" id="employerApplications">Login as employer to view applications.</div>
+        </section>
+
+        <section class="panel">
+          <div class="head">
+            <p class="eyebrow">Candidate Activity</p>
+            <h2>My applications</h2>
+          </div>
+          <div class="list" id="candidateApplications">Login as candidate to view applications.</div>
+        </section>
+      </section>
+    </div>
+
+    <div class="toast-wrap" id="toastWrap"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>

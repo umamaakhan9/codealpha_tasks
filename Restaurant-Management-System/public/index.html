@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midnight Kitchen Control</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <div class="glow glow-a"></div>
+      <div class="glow glow-b"></div>
+
+      <header class="hero panel">
+        <div class="hero-copy">
+          <p class="kicker">CodeAlpha Task 3</p>
+          <h1>Midnight Kitchen Control</h1>
+          <p>
+            A premium restaurant operations dashboard to manage menu, reservations, orders, tables, and stock alerts
+            in one cinematic interface.
+          </p>
+          <div class="hero-actions">
+            <button class="primary" id="fillDemoButton">Use Admin Demo</button>
+            <span class="badge">Restaurant Management System</span>
+          </div>
+        </div>
+        <div class="hero-metrics" id="heroMetrics"></div>
+      </header>
+
+      <main class="grid">
+        <section class="panel">
+          <div class="section-head">
+            <p class="kicker">Authentication</p>
+            <h2 id="accountHeading">Sign in to manage restaurant operations</h2>
+          </div>
+
+          <div id="authSection">
+            <div class="tabs">
+              <button class="tab active" data-tab="login">Login</button>
+              <button class="tab" data-tab="register">Register</button>
+            </div>
+
+            <form id="loginForm" class="form-grid">
+              <input type="email" name="email" placeholder="admin@restaurant.com" required />
+              <input type="password" name="password" placeholder="admin123" required />
+              <button type="submit" class="primary span-2">Login</button>
+            </form>
+
+            <form id="registerForm" class="form-grid hidden">
+              <input type="text" name="name" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Email address" required />
+              <input type="password" name="password" placeholder="Password" required />
+              <select name="role">
+                <option value="customer">Customer</option>
+                <option value="manager">Manager</option>
+                <option value="admin">Admin</option>
+              </select>
+              <button type="submit" class="primary span-2">Create Account</button>
+            </form>
+          </div>
+
+          <div id="accountCard" class="account-card hidden"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <p class="kicker">Operations Snapshot</p>
+            <h2>Live service pulse</h2>
+          </div>
+          <div class="stats" id="statsGrid"></div>
+        </section>
+      </main>
+
+      <section class="panel">
+        <div class="section-head">
+          <p class="kicker">Menu</p>
+          <h2>Chef-crafted catalog</h2>
+        </div>
+        <div class="cards" id="menuGrid"></div>
+      </section>
+
+      <section class="grid">
+        <section class="panel">
+          <div class="section-head">
+            <p class="kicker">Tables</p>
+            <h2>Reservation map</h2>
+          </div>
+          <div class="cards compact" id="tablesGrid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <p class="kicker">Reservations</p>
+            <h2>My bookings</h2>
+          </div>
+          <div class="list" id="reservationsList">Login to manage reservations.</div>
+        </section>
+      </section>
+
+      <section class="grid">
+        <section class="panel hidden" id="managerPanel">
+          <div class="section-head">
+            <p class="kicker">Manager Console</p>
+            <h2>Add menu items and tables</h2>
+          </div>
+
+          <form id="menuForm" class="form-grid">
+            <input type="text" name="name" placeholder="Menu item name" required />
+            <input type="text" name="category" placeholder="Category" required />
+            <input type="number" step="0.01" name="price" placeholder="Price" required />
+            <input type="number" name="stock_quantity" placeholder="Stock quantity" required />
+            <textarea class="span-2" name="description" rows="3" placeholder="Description"></textarea>
+            <button type="submit" class="primary span-2">Add Menu Item</button>
+          </form>
+
+          <form id="tableForm" class="form-grid">
+            <input type="text" name="table_number" placeholder="Table number" required />
+            <input type="number" name="seats" placeholder="Seats" required />
+            <input class="span-2" type="text" name="zone" placeholder="Zone" />
+            <button type="submit" class="primary span-2">Add Table</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <p class="kicker">Quick Actions</p>
+            <h2>Book table and place order</h2>
+          </div>
+
+          <form id="reservationForm" class="form-grid">
+            <select name="table_id" required></select>
+            <input type="number" name="guest_count" min="1" placeholder="Guests" required />
+            <input class="span-2" type="datetime-local" name="reservation_time" required />
+            <textarea class="span-2" name="notes" rows="2" placeholder="Notes"></textarea>
+            <button type="submit" class="primary span-2">Reserve Table</button>
+          </form>
+
+          <form id="orderForm" class="form-grid">
+            <select name="table_id"></select>
+            <select name="menu_item_id" required></select>
+            <input type="number" name="quantity" min="1" value="1" required />
+            <button type="submit" class="primary span-2">Place Order</button>
+          </form>
+        </section>
+      </section>
+
+      <section class="panel hidden" id="reportPanel">
+        <div class="section-head">
+          <p class="kicker">Reports</p>
+          <h2>Sales and stock alerts</h2>
+        </div>
+        <div class="stats" id="reportStats"></div>
+      </section>
+    </div>
+
+    <div class="toast-wrap" id="toastWrap"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Events Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">CodeAlpha Task 2</p>
+          <h1>Nova Events Hub</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="status-pill">Live API Experience</span>
+          <button class="ghost-button hidden" id="logoutButton">Logout</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero card reveal">
+          <div class="hero-copy">
+            <p class="eyebrow">Professional Event Registration System</p>
+            <h2>Manage events, registrations, and attendees with a polished animated dashboard.</h2>
+            <p class="hero-text">
+              A creative full-stack interface for discovering events, reserving seats, tracking registrations,
+              and managing the entire event lifecycle from one elegant workspace.
+            </p>
+            <div class="hero-actions">
+              <a href="#eventsSection" class="primary-button">Explore Events</a>
+              <button class="ghost-button" id="demoFillButton">Try Demo Credentials</button>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="metric-card">
+              <span>Total Events</span>
+              <strong id="heroEvents">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Open Spots</span>
+              <strong id="heroSpots">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Your Registrations</span>
+              <strong id="heroRegistrations">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="dashboard-grid">
+          <div class="card auth-card reveal">
+            <div class="section-heading">
+              <p class="eyebrow">Account Access</p>
+              <h3 id="authHeading">Sign in to register instantly</h3>
+            </div>
+
+            <div id="authView">
+              <div class="tab-row">
+                <button class="tab-button active" data-auth-tab="login">Login</button>
+                <button class="tab-button" data-auth-tab="register">Register</button>
+              </div>
+
+              <form id="loginForm" class="form-grid">
+                <label>
+                  <span>Email</span>
+                  <input type="email" name="email" placeholder="admin@events.com" required />
+                </label>
+                <label>
+                  <span>Password</span>
+                  <input type="password" name="password" placeholder="admin123" required />
+                </label>
+                <button type="submit" class="primary-button full-width">Login</button>
+              </form>
+
+              <form id="registerForm" class="form-grid hidden">
+                <label>
+                  <span>Full Name</span>
+                  <input type="text" name="name" placeholder="Ayesha Khan" required />
+                </label>
+                <label>
+                  <span>Email</span>
+                  <input type="email" name="email" placeholder="ayesha@email.com" required />
+                </label>
+                <label>
+                  <span>Password</span>
+                  <input type="password" name="password" placeholder="Choose a secure password" required />
+                </label>
+                <label>
+                  <span>Role</span>
+                  <select name="role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </label>
+                <button type="submit" class="primary-button full-width">Create Account</button>
+              </form>
+            </div>
+
+            <div id="accountView" class="hidden">
+              <div class="profile-card">
+                <div class="avatar" id="profileInitials">NA</div>
+                <div>
+                  <h4 id="profileName">Guest User</h4>
+                  <p id="profileMeta">Sign in to activate registrations</p>
+                </div>
+              </div>
+              <div class="quick-stats">
+                <div>
+                  <span>Role</span>
+                  <strong id="profileRole">Visitor</strong>
+                </div>
+                <div>
+                  <span>Email</span>
+                  <strong id="profileEmail">-</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <div class="section-heading">
+              <p class="eyebrow">Live Overview</p>
+              <h3>System snapshot</h3>
+            </div>
+            <div class="stats-grid" id="statsGrid"></div>
+          </div>
+        </section>
+
+        <section class="card controls-card reveal" id="eventsSection">
+          <div class="section-heading">
+            <p class="eyebrow">Events Showcase</p>
+            <h3>Discover and reserve upcoming experiences</h3>
+          </div>
+          <div class="controls-row">
+            <label class="search-box">
+              <span>Search</span>
+              <input type="search" id="searchInput" placeholder="Search by title or location" />
+            </label>
+            <label>
+              <span>Status</span>
+              <select id="statusFilter">
+                <option value="all">All</option>
+                <option value="open">Open Spots</option>
+                <option value="limited">Limited Seats</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="events-grid" id="eventsGrid"></section>
+
+        <section class="dashboard-grid lower-grid">
+          <div class="card reveal">
+            <div class="section-heading">
+              <p class="eyebrow">Your Activity</p>
+              <h3>My registrations</h3>
+            </div>
+            <div id="registrationsList" class="stack-list empty-state">
+              Login to see your confirmed and cancelled registrations.
+            </div>
+          </div>
+
+          <div class="card reveal hidden" id="adminPanel">
+            <div class="section-heading">
+              <p class="eyebrow">Organizer Console</p>
+              <h3>Create or update events</h3>
+            </div>
+            <form id="eventForm" class="form-grid">
+              <input type="hidden" name="id" />
+              <label>
+                <span>Title</span>
+                <input type="text" name="title" placeholder="Design Leadership Summit" required />
+              </label>
+              <label>
+                <span>Location</span>
+                <input type="text" name="location" placeholder="Karachi Expo Center" />
+              </label>
+              <label class="full-width">
+                <span>Description</span>
+                <textarea name="description" rows="4" placeholder="Describe the event experience"></textarea>
+              </label>
+              <label>
+                <span>Date & Time</span>
+                <input type="datetime-local" name="event_date" required />
+              </label>
+              <label>
+                <span>Capacity</span>
+                <input type="number" name="capacity" min="1" value="100" required />
+              </label>
+              <label>
+                <span>Status</span>
+                <select name="status">
+                  <option value="active">Active</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </label>
+              <div class="button-row full-width">
+                <button type="submit" class="primary-button" id="eventSubmitButton">Create Event</button>
+                <button type="button" class="ghost-button" id="eventResetButton">Reset Form</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal hidden" id="detailModal">
+      <div class="modal-card">
+        <button class="icon-button" id="closeModalButton">Close</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
